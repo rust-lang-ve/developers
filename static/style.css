@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;800&family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Recursive', sans-serif;
+}
+
+#app-header {
+  background-color: #000000;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+#app-header h1 {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+#developer-list {
+  list-style-type: none;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+#developer-list .developer {
+  border: 1px solid #000000;
+  border-radius: .5rem;
+  display: flex;
+  margin: 1rem auto 0 auto;
+  width: 90%;
+}
+
+#developer-list .developer h3 {
+  margin: 1rem 0;
+}
+
+#developer-list .developer .avatar img {
+  border-radius: 100px;
+}
+
+#developer-list .developer .field {
+  display: inline-block;
+}
+
+#developer-list .developer .details {
+  min-width: 300px;
+  width: 80%;
+}
+
+#developer-list .developer .field figure {
+  display: inline-block;
+  margin: 0 1rem 0 0;
+}
+
+#developer-list .developer .field a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 1rem 0 0;
+}
+
+#developer-list .developer .field a:hover {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  margin: 0 1rem 0 0;
+}
+
+footer {
+  background-color: #000000;
+  bottom: 0;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: 'Recursive', sans-serif;
+  padding: .5rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

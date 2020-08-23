@@ -1,9 +1,8 @@
-use crate::components::search::Search;
 use yew::prelude::*;
 
-pub struct Home {}
+pub struct Footer {}
 
-impl Component for Home {
+impl Component for Footer {
     type Message = ();
     type Properties = ();
 
@@ -21,7 +20,9 @@ impl Component for Home {
 
     fn view(&self) -> Html {
         html! {
-            <Search />
+            <footer>
+                <small>{"Made with ☕ and ❤️️ by 👨‍💻"}</small>
+            </footer>
         }
     }
 }

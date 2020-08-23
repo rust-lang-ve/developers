@@ -153,3 +153,4 @@ pkg/
 dist/
 static/*
 !static/index.html
+!static/style.css
