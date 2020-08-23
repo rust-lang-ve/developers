@@ -1,0 +1,22 @@
+[
+  {
+    "first_name": "Esteban",
+    "last_name": "Borai",
+    "email": "estebanborai@gmail.com",
+    "bio": "I'm a Software Developer interested in Rust and TypeScript. Currently most of my open source work is in @rust-lang-ve, come visit!",
+    "linked_in": null,
+    "github": "https://github.com/EstebanBorai",
+    "gitlab": "https://gitlab.com/estebanborai",
+    "reddit": null,
+    "location": null,
+    "twitter": "EstebanBorai",
+    "telegram": null,
+    "avatar_url": "https://avatars3.githubusercontent.com/u/34756077?s=460&u=25a08801f316805e1c88f76b244b1c67bbfbdb3b&v=4",
+    "website": "https://estebanborai.github.io",
+    "technologies": [
+      "TypeScript",
+      "Go",
+      "Rust"
+    ]
+  }
+]
