@@ -151,33 +151,5 @@ wasm-pack.log
 bin/
 pkg/
 dist/
-
-
-#Added by cargo
-#
-#already existing elements were commented out
-
-#/target
-#Cargo.lock
-
-
-#Added by cargo
-#
-#already existing elements were commented out
-
-#/target
-
-
-#Added by cargo
-#
-#already existing elements were commented out
-
-#/target
-
-
-#Added by cargo
-#
-#already existing elements were commented out
-
-#/target
-#Cargo.lock
+static/*
+!static/index.html

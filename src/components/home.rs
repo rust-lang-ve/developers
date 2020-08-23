@@ -1,4 +1,3 @@
-use crate::components::Search;
 use yew::prelude::*;
 
 pub struct Home {}
@@ -21,7 +20,7 @@ impl Component for Home {
 
     fn view(&self) -> Html {
         html! {
-            <Search />
+            <h1>{"Developers"}</h1>
         }
     }
 }
