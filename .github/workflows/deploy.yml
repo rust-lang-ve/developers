@@ -14,13 +14,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Rust Toolchain
-        uses: actions-rs/toolchain@v1
+      - uses: actions-rs/install@v0.1
         with:
-          toolchain: stable
+          crate: wasm-pack
+          version: latest
 
       - name: Install and Build
-        run: build.sh
+        run: 'wasm-pack build --dev --target web --out-name wasm --out-dir ./static && rm ./static/.gitignore'
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.9
