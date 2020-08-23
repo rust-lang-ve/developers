@@ -1,12 +1,13 @@
 use crate::api;
-use crate::models::Developer;
+use crate::components::ListItem;
+use crate::models::developer::Developer;
 use anyhow::Error;
 use yew::format::Json;
 use yew::prelude::*;
 use yew::services::fetch::FetchTask;
 
 struct State {
-    results: Vec<Developer>,
+    developers: Vec<Developer>,
     fetch_developers_error: Option<Error>,
     fetch_developers_loaded: bool,
 }
@@ -24,17 +25,17 @@ pub struct Search {
 }
 
 impl Component for Search {
-    type Message = ();
+    type Message = Msg;
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let results: Vec<Developer> = Vec::new();
+        let developers: Vec<Developer> = Vec::new();
 
         link.send_message(Msg::FetchDevelopers);
 
         Self {
             state: State {
-                results,
+                developers,
                 fetch_developers_error: None,
                 fetch_developers_loaded: false,
             },
@@ -48,23 +49,23 @@ impl Component for Search {
             Msg::FetchDevelopers => {
                 self.state.fetch_developers_loaded = false;
 
-                let handler =
-                    self.link
-                        .callback(move |response: api::FetchResponse<Vec<Developer>>| {
-                            let (_, Json(data)) = response.into_parts();
+                let handler = self.link.callback(
+                    move |response: api::common::FetchResponse<Vec<Developer>>| {
+                        let (_, Json(data)) = response.into_parts();
 
-                            match data {
-                                Ok(developers) => Msg::FetchDevelopersSuccess(developers),
-                                Err(err) => Msg::FetchDevelopersError(err),
-                            };
-                        });
+                        match data {
+                            Ok(developers) => Msg::FetchDevelopersSuccess(developers),
+                            Err(err) => Msg::FetchDevelopersError(err),
+                        }
+                    },
+                );
 
-                self.task = Some(api::get_developers(handler));
+                self.task = Some(api::developers::get_developers(handler));
 
                 true
             }
             Msg::FetchDevelopersSuccess(developers) => {
-                self.state.results = developers;
+                self.state.developers = developers;
                 self.state.fetch_developers_loaded = true;
 
                 true
@@ -85,13 +86,27 @@ impl Component for Search {
     fn view(&self) -> Html {
         let developers: Vec<Html> = self
             .state
-            .results
+            .developers
             .iter()
             .map(|developer| {
+                // handle option values
+                let avatar_url = match &developer.avatar_url {
+                    Some(avatar_url) => avatar_url.clone(),
+                    None => String::default(),
+                };
+
+                let github = match &developer.github {
+                    Some(username) => username.clone(),
+                    None => String::default(),
+                };
+
                 html! {
-                    <div>
-                        <h3>{&developer.first_name} {&developer.last_name}</h3>
-                    </div>
+                    <ListItem
+                        avatar_url=avatar_url
+                        full_name=developer.full_name().as_str()
+                        email=developer.email.as_str()
+                        github=github
+                    />
                 }
             })
             .collect();
@@ -100,7 +115,7 @@ impl Component for Search {
             html! {
                 <span>{"Loading..."}</span>
             }
-        } else if let Some(_) = self.state.fetch_developers_error {
+        } else if self.state.fetch_developers_error.is_some() {
             html! {
                 <div>
                     <span>{"Something came wrong!"}</span>
@@ -108,7 +123,7 @@ impl Component for Search {
             }
         } else {
             html! {
-                <div>{developers}</div>
+                <ol id="developer-list">{developers}</ol>
             }
         }
     }

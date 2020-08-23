@@ -15,3 +15,9 @@ pub struct Developer {
     pub avatar_url: Option<String>,
     pub website: Option<String>,
 }
+
+impl Developer {
+    pub fn full_name(&self) -> String {
+        format!("{} {}", self.first_name, self.last_name)
+    }
+}

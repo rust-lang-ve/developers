@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::components::Home;
+use crate::components::{Footer, Header, Home};
 
 pub struct App {}
 
@@ -23,12 +23,11 @@ impl Component for App {
     fn view(&self) -> Html {
         html! {
             <div>
-              <header>
-                <h1>{"Developers"}</h1>
-              </header>
+              <Header />
               <main>
                 <Home />
               </main>
+              <Footer />
             </div>
         }
     }
